@@ -1,0 +1,34 @@
+<div *ngIf="contentLoading else content">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <img src="assets/Rolling-1s-200px.svg" alt="Loading..." width="40">
+      <h3>Loading...</h3>
+    </div>
+  </div>
+</div>
+
+<ng-template #content>
+    <div class="row">
+      <div class="col-md-4">
+        <img *ngIf="retrievedImage" [src]="retrievedImage" class="ml-1 mr-1 mb-2" alt="profile image"
+             style="width: inherit; display: block">
+        <button class="btn btn-outline-primary" (click)="showChangeProfileImage=!showChangeProfileImage">Change
+          profile
+        </button>
+
+        <div *ngIf="showChangeProfileImage" style="position: relative" class="mt-2">
+          <input class="form-control-file" type="file" (change)="onFileChanged($event)">
+          <button (click)="onUpload()" class="btn btn-primary mt-2" [disabled]="loading">Save
+
+          </button>
+          <img src="assets/Rolling-1s-200px.svg" alt="Loading..." class="mt-2" width="20" *ngIf="loading">
+
+        </div>
+
+      </div>
+      <div class="col-md-8">
+        <p>{{id}}</p>
+        <p>{{username}}</p>
+      </div>
+    </div>
+</ng-template>
